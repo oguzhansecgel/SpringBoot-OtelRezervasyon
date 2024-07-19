@@ -9,7 +9,7 @@ import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.UpdateRoomResponse;
 
 import java.util.List;
 import java.util.Optional;
-
+//
 public interface RoomService {
     CreateRoomResponse createRoom(CreateRoomResponse createRoomResponse);
     UpdateRoomResponse updateRoom(UpdateRoomResponse updateRoomResponse, Integer id);
