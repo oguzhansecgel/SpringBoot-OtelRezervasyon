@@ -4,6 +4,7 @@ import com.turizm.OtelRezervasyon.Core.Dto.Request.Room.CreateRoomRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Room.UpdateRoomRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetByIdRoomResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.TrueRoomWithFeaturesResponse;
 import com.turizm.OtelRezervasyon.Entities.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -25,6 +26,7 @@ public interface RoomMapper {
     Room createRoomMapper(CreateRoomRequest createRoomRequest);
 
     @Mapping(target = "hotel.id",source = "hotelId")
+    @Mapping(target = "id", ignore = true)
     Room updateRoomMapper(UpdateRoomRequest updateRoomRequest,@MappingTarget Room room);
 
     GetByIdRoomResponse getByIdRoomMapper(Room room);
@@ -32,4 +34,7 @@ public interface RoomMapper {
     GetAllRoomResponse getAllRoomMapper(Room room);
     List<GetAllRoomResponse> roomToListRoomResponse(List<Room> rooms);
 
+
+    TrueRoomWithFeaturesResponse trueRoomWithFeaturesResponse(Room room);
+    List<TrueRoomWithFeaturesResponse> roomToListRoomTrueFeaturesResponse(List<Room> rooms);
 }

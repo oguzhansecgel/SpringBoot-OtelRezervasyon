@@ -1,9 +1,12 @@
 package com.turizm.OtelRezervasyon.Service.Concretes;
 
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.CreateRoomResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetByIdRoomResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.UpdateRoomResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Request.Room.CreateRoomRequest;
+import com.turizm.OtelRezervasyon.Core.Dto.Request.Room.UpdateRoomRequest;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.*;
+import com.turizm.OtelRezervasyon.Core.Mapper.HotelMapper;
+import com.turizm.OtelRezervasyon.Core.Mapper.RoomMapper;
+import com.turizm.OtelRezervasyon.Entities.Hotel;
+import com.turizm.OtelRezervasyon.Entities.Room;
 import com.turizm.OtelRezervasyon.Repositories.RoomRepository;
 import com.turizm.OtelRezervasyon.Service.Abstracts.RoomService;
 import org.springframework.stereotype.Service;
@@ -21,28 +24,42 @@ public class RoomServiceImpl implements RoomService{
     }
 
     @Override
-    public CreateRoomResponse createRoom(CreateRoomResponse createRoomResponse) {
-
-        return null;
+    public CreateRoomResponse createRoom(CreateRoomRequest createRoomRequest) {
+        Room room = RoomMapper.INSTANCE.createRoomMapper(createRoomRequest);
+        Room savedRoom = roomRepository.save(room);
+        return new CreateRoomResponse(savedRoom.getId(),savedRoom.getBedCount(),savedRoom.getSquareMeters(),savedRoom.isHasTelevision(),savedRoom.isHasMinibar(),savedRoom.isHasGameConsole(),savedRoom.isHasSafe(),savedRoom.isHasProjector(),savedRoom.getPrice(),savedRoom.getHotel().getId());
     }
 
     @Override
-    public UpdateRoomResponse updateRoom(UpdateRoomResponse updateRoomResponse, Integer id) {
-        return null;
+    public UpdateRoomResponse updateRoom(UpdateRoomRequest updateRoomRequest, Integer id) {
+        Optional<Room> roomOptional = roomRepository.findById(id);
+        Room existingRoom = roomOptional.get();
+        Room room = RoomMapper.INSTANCE.updateRoomMapper(updateRoomRequest,existingRoom);
+        Room savedRoom = roomRepository.save(room);
+        return new UpdateRoomResponse(savedRoom.getId(),savedRoom.getBedCount(),savedRoom.getSquareMeters(),savedRoom.isHasTelevision(),savedRoom.isHasMinibar(),savedRoom.isHasGameConsole(),savedRoom.isHasSafe(),savedRoom.isHasProjector(),savedRoom.getPrice(),savedRoom.getHotel().getId());
     }
 
     @Override
     public Optional<GetByIdRoomResponse> getByIdRoom(Integer id) {
-        return Optional.empty();
+        Optional<Room> roomOptional = roomRepository.findById(id);
+
+        return roomOptional.map(RoomMapper.INSTANCE::getByIdRoomMapper);
     }
 
     @Override
     public List<GetAllRoomResponse> getAllRoom() {
-        return List.of();
+        List<Room> rooms = roomRepository.findAll();
+        return RoomMapper.INSTANCE.roomToListRoomResponse(rooms);
     }
 
     @Override
     public void deletedRoom(Integer id) {
+        roomRepository.deleteById(id);
+    }
 
+    @Override
+    public List<TrueRoomWithFeaturesResponse> findAllByAllFeaturesTrue() {
+        List<Room> rooms = roomRepository.findAllByAllFeaturesTrue();
+        return RoomMapper.INSTANCE.roomToListRoomTrueFeaturesResponse(rooms);
     }
 }

@@ -2,10 +2,8 @@ package com.turizm.OtelRezervasyon.Controller;
 
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.CreateHotelRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.UpdateHotelRequest;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.CreateHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetAllHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetByIdHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.UpdateHotelResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.*;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
 import com.turizm.OtelRezervasyon.Service.Abstracts.HotelService;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +45,12 @@ public class HotelController {
     public void deletedHotel(@PathVariable int id)
     {
         hotelService.deletedHotel(id);
+    }
+
+
+    @GetMapping("/withRoom/{hotelId}")
+    public HotelWithRoomResponse getAllHotelWithRoom(@PathVariable int hotelId)
+    {
+        return hotelService.getAllHotelWithRoom(hotelId);
     }
 }

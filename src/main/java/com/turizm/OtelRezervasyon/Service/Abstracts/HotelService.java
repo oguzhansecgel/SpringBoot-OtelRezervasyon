@@ -2,10 +2,8 @@ package com.turizm.OtelRezervasyon.Service.Abstracts;
 
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.CreateHotelRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.UpdateHotelRequest;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.CreateHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetAllHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetByIdHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.UpdateHotelResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.*;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
 import com.turizm.OtelRezervasyon.Entities.Hotel;
 
 import java.util.List;
@@ -17,5 +15,7 @@ public interface HotelService {
     Optional<GetByIdHotelResponse> getByIdHotel(Integer id);
     List<GetAllHotelResponse> getAllHotel();
     void deletedHotel(Integer id);
+
+   HotelWithRoomResponse getAllHotelWithRoom(Integer hotelId);
 
 }

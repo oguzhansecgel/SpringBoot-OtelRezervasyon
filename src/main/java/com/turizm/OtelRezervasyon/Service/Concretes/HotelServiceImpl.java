@@ -2,10 +2,8 @@ package com.turizm.OtelRezervasyon.Service.Concretes;
 
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.CreateHotelRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.UpdateHotelRequest;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.CreateHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetAllHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetByIdHotelResponse;
-import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.UpdateHotelResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.*;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
 import com.turizm.OtelRezervasyon.Core.Mapper.HotelMapper;
 import com.turizm.OtelRezervasyon.Core.Mapper.RoomMapper;
 import com.turizm.OtelRezervasyon.Entities.Hotel;
@@ -68,5 +66,13 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void deletedHotel(Integer id) {
         hotelRepository.deleteById(id);
+    }
+
+    @Override
+    public HotelWithRoomResponse getAllHotelWithRoom(Integer hotelId) {
+        Hotel hotel = hotelRepository.findById(hotelId)
+                .orElseThrow(() -> new RuntimeException("Hotel not found with id " + hotelId));
+
+        return HotelMapper.INSTANCE.hotelToHotelWithRoomResponse(hotel);
     }
 }

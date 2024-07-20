@@ -1,5 +1,6 @@
 package com.turizm.OtelRezervasyon.Core.Dto.Response.Room;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllRoomResponse {
+@JsonInclude(JsonInclude.Include.NON_DEFAULT) // false değerleri jsonda bastırmaz
+public class TrueRoomWithFeaturesResponse {
     private int id;
 
     private int bedCount;
