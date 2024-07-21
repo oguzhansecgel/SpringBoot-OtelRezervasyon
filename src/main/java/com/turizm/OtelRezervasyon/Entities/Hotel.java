@@ -45,4 +45,7 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY) // orphanRemoval = true bir çocuk entity, ilişkili olduğu ebeveyn entity'den çıkarıldığında, bu çocuk entity veritabanından da silinir.
     private List<Room> rooms= new ArrayList<>();
 
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<HotelFeatures> features = new ArrayList<>();
+
 }

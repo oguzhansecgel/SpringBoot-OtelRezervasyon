@@ -29,6 +29,16 @@ public class HotelController {
     {
         return hotelService.getByIdHotel(id);
     }
+    @GetMapping("/withRoom/{hotelId}")
+    public HotelWithRoomResponse getAllHotelWithRoom(@PathVariable int hotelId)
+    {
+        return hotelService.getAllHotelWithRoom(hotelId);
+    }
+    @GetMapping("/withHotelFeatures/{hotelId}")
+    public HotelWithHotelFeaturesResponse getAllHotelWithHotelFeatures(@PathVariable int hotelId)
+    {
+        return hotelService.getAllHotelWithHotelFeatures(hotelId);
+    }
     @PostMapping("/create")
     public CreateHotelResponse createHotel(@RequestBody CreateHotelRequest hotel)
     {
@@ -48,9 +58,5 @@ public class HotelController {
     }
 
 
-    @GetMapping("/withRoom/{hotelId}")
-    public HotelWithRoomResponse getAllHotelWithRoom(@PathVariable int hotelId)
-    {
-        return hotelService.getAllHotelWithRoom(hotelId);
-    }
+
 }

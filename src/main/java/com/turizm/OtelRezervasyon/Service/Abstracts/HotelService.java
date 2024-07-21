@@ -17,5 +17,7 @@ public interface HotelService {
     void deletedHotel(Integer id);
 
    HotelWithRoomResponse getAllHotelWithRoom(Integer hotelId);
+   HotelWithHotelFeaturesResponse getAllHotelWithHotelFeatures(Integer hotelId);
+
 
 }

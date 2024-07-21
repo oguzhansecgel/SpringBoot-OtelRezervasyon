@@ -4,9 +4,12 @@ import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.CreateHotelRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Hotel.UpdateHotelRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetAllHotelResponse;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.GetByIdHotelResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.HotelWithHotelFeaturesResponse;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Hotel.HotelWithRoomResponse;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.HotelFeatures.GetAllHotelFeaturesResponse;
 import com.turizm.OtelRezervasyon.Core.Dto.Response.Room.GetAllRoomResponse;
 import com.turizm.OtelRezervasyon.Entities.Hotel;
+import com.turizm.OtelRezervasyon.Entities.HotelFeatures;
 import com.turizm.OtelRezervasyon.Entities.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -39,6 +42,16 @@ public interface HotelMapper {
 
     @Mapping(source = "id", target = "hotelId")
     GetAllRoomResponse roomToGetAllRoomResponse(Room room);
+
+
+
+    @Mapping(source = "id", target = "hotelId")
+    @Mapping(source = "features", target = "hotelFeatures")
+    HotelWithHotelFeaturesResponse hotelToHotelWithHotelFeaturesResponse(Hotel hotel);
+
+    @Mapping(source = "id", target = "hotelId")
+    GetAllHotelFeaturesResponse hotelFeaturesToGetAllHotelFeaturesResponse(HotelFeatures hotelFeatures);
+
 }
 
 

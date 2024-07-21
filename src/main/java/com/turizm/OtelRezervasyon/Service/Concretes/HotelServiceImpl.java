@@ -75,4 +75,10 @@ public class HotelServiceImpl implements HotelService {
 
         return HotelMapper.INSTANCE.hotelToHotelWithRoomResponse(hotel);
     }
+
+    @Override
+    public HotelWithHotelFeaturesResponse getAllHotelWithHotelFeatures(Integer hotelId) {
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(()-> new RuntimeException("Hotel not found with id "+ hotelId));
+        return HotelMapper.INSTANCE.hotelToHotelWithHotelFeaturesResponse(hotel);
+    }
 }
