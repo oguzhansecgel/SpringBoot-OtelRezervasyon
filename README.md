@@ -49,12 +49,13 @@ COPY --from=build /app/target/OtelRezervasyon-0.0.1-SNAPSHOT.jar /app/OtelRezerv
 CMD java -jar /app/OtelRezervasyon.jar
 ```
 
-
 ### Uygulama çalıştıktan sonra, API uç noktalarına erişebilirsiniz. Örneğin:
--Otelleri listelemek için: GET /hotels
--Yeni bir otel eklemek için: POST /hotels
--Belirli bir oteli görmek için: GET /hotels/{id}
--Belirli bir oteli güncellemek için: PUT /hotels/{id}
--Belirli bir oteli silmek için: DELETE /hotels/{id}
+
+- Otelleri listelemek için: `GET /hotels`
+- Yeni bir otel eklemek için: `POST /hotels`
+- Belirli bir oteli görmek için: `GET /hotels/{id}`
+- Belirli bir oteli güncellemek için: `PUT /hotels/{id}`
+- Belirli bir oteli silmek için: `DELETE /hotels/{id}`
+
 
 
