@@ -51,11 +51,13 @@ CMD java -jar /app/OtelRezervasyon.jar
 
 ### Uygulama çalıştıktan sonra, API uç noktalarına erişebilirsiniz. Örneğin:
 
-- Otelleri listelemek için: `GET /hotels`
-- Yeni bir otel eklemek için: `POST /hotels`
-- Belirli bir oteli görmek için: `GET /hotels/{id}`
-- Belirli bir oteli güncellemek için: `PUT /hotels/{id}`
-- Belirli bir oteli silmek için: `DELETE /hotels/{id}`
+- Otelleri listelemek için: `GET api/v1/hotel/getAll`
+- Yeni bir otel eklemek için: `POST api/v1/hotel/create`
+- Belirli bir oteli görmek için: `GET api/v1/hotel/getById/{id}`
+- Belirli bir oteli güncellemek için: `PUT api/v1/hotel/update/{id}`
+- Belirli bir oteli silmek için: `DELETE api/v1/hotel/deleteHotel/{id}`
+- Otellerin odalarını görmek için: `GET api/v1/hotel/withRoom/{hotelId}`
+- Otellerin özelliklerini görmek için: `GET api/v1/hotel/withHotelFeatures/{hotelId}`
 
 
 
