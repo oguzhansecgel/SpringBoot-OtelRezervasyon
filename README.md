@@ -8,7 +8,7 @@ Bu proje, otel rezervasyonlarını yönetmek için geliştirilmiş bir Spring Bo
 - Git
 - PostgreSQL
 - Docker Desktop
-
+-------------------------------------------------------------------------------------
 ## Kurulum
 
 ### 1. Adım: Projeyi Klonlayın
@@ -48,9 +48,9 @@ COPY --from=build /app/target/OtelRezervasyon-0.0.1-SNAPSHOT.jar /app/OtelRezerv
 # EXPOSE 8082
 CMD java -jar /app/OtelRezervasyon.jar
 ```
-
+-------------------------------------------------------------------------------------
 ### Uygulama çalıştıktan sonra, API uç noktalarına erişebilirsiniz. Örneğin:
-
+#### Otel Api
 - Otelleri listelemek için: `GET api/v1/hotel/getAll`
 - Yeni bir otel eklemek için: `POST api/v1/hotel/create`
 - Belirli bir oteli görmek için: `GET api/v1/hotel/getById/{id}`
@@ -59,5 +59,12 @@ CMD java -jar /app/OtelRezervasyon.jar
 - Otellerin odalarını görmek için: `GET api/v1/hotel/withRoom/{hotelId}`
 - Otellerin özelliklerini görmek için: `GET api/v1/hotel/withHotelFeatures/{hotelId}`
 
+-------------------------------------------------------------------------------------
+#### Rezervasyon Api
+- Rezervasyon oluşturmak için : `CREATE api/v1/reservation/createReservation`
+- Rezervasyon güncellemek için : `UPDATE api/v1/reservation/updateReservation/{id}` 
+- Rezervasyon listelemek için : `GET api/v1/reservation/getAll`
+- Rezervasyon silmek için : `DELETE api/v1/reservation/deleteReservation/{id}`
 
-
+-------------------------------------------------------------------------------------
+#### Her türlü geri bildirim ve katkıya açığım !
