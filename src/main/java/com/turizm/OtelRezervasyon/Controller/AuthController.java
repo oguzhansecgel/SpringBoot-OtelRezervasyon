@@ -2,13 +2,13 @@ package com.turizm.OtelRezervasyon.Controller;
 
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Auth.LoginRequest;
 import com.turizm.OtelRezervasyon.Core.Dto.Request.Auth.RegisterRequest;
+import com.turizm.OtelRezervasyon.Core.Dto.Response.Auth.UserResponse;
 import com.turizm.OtelRezervasyon.Service.Abstracts.Auth.AuthService;
 import com.turizm.OtelRezervasyon.Service.Abstracts.Auth.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth")

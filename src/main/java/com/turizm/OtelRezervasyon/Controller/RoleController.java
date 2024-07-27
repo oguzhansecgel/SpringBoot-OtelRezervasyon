@@ -34,8 +34,11 @@ public class RoleController {
             User user = userOptional.get();
             Role role = roleOptional.get();
 
+            // Rolü kullanıcının rollerine ekle
             user.getRoles().add(role);
-            userService.add(user);
+
+            // Kullanıcıyı güncelle
+            userService.add(user); // Bu metodun implementasyonunu kontrol edin
 
             RoleWithUserResponse roleWithUserResponse = new RoleWithUserResponse(userId, roleId);
             return ResponseEntity.ok(roleWithUserResponse);

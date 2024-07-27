@@ -6,6 +6,7 @@ import com.turkcell.tcell.core.security.BaseSecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,12 +33,29 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         baseSecurityService.configureCommonSecurityRules(http);
-        http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests
-                        .requestMatchers("/api/v1/hotel/**").authenticated()
+        http
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").hasAnyAuthority("Admin")
+                                .requestMatchers(HttpMethod.GET, "/api/users/getAllUsers").hasAnyAuthority("Admin")
 
-                        .anyRequest().permitAll()
-        );
+
+                                .requestMatchers(HttpMethod.GET, "/api/v1/hotel/getAll").hasAnyAuthority("Personel","Admin")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/hotel/create").hasAnyAuthority("Personel","Admin")
+
+                                .requestMatchers(HttpMethod.GET, "/api/v1/room/getAll").hasAnyAuthority("Personel","Admin")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/room/create").hasAnyAuthority("Personel","Admin")
+
+                                .requestMatchers(HttpMethod.GET, "/api/v1/reservation/getAll").hasAnyAuthority("Personel","Admin")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/reservation/createReservation").hasAnyAuthority("Personel","Admin")
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/reservation/deleteReservation/{id}").hasAnyAuthority("Personel","Admin")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/reservation/updateReservation/{id}").hasAnyAuthority("Personel","Admin")
+
+                                .requestMatchers("/api/v1/hotel/**").authenticated()
+                                .requestMatchers("/api/v1/room/**").authenticated()
+                                .requestMatchers("/api/v1/reservation/**").authenticated()
+                                .anyRequest().permitAll()
+                );
         return http.build();
     }
     @Bean
@@ -53,3 +71,8 @@ public class SecurityConfiguration {
         return configuration.getAuthenticationManager();
     }
 }
+//Personel admin
+
+//Dönem Yönetimi: Dönem listeleme, ekleme
+//Fiyat Yönetimi
+//Oda Arama
