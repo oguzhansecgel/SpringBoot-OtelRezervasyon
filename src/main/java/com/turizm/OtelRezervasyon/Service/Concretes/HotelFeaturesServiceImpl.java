@@ -11,18 +11,26 @@ import com.turizm.OtelRezervasyon.Core.Mapper.HotelMapper;
 import com.turizm.OtelRezervasyon.Entities.HotelFeatures;
 import com.turizm.OtelRezervasyon.Repositories.HotelFeaturesRepository;
 import com.turizm.OtelRezervasyon.Service.Abstracts.HotelFeaturesService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+
 public class HotelFeaturesServiceImpl implements HotelFeaturesService {
 
-    private final HotelFeaturesRepository hotelFeaturesRepository;
+    private HotelFeaturesRepository hotelFeaturesRepository;
 
+    @Autowired
     public HotelFeaturesServiceImpl(HotelFeaturesRepository hotelFeaturesRepository) {
         this.hotelFeaturesRepository = hotelFeaturesRepository;
+    }
+
+    public HotelFeaturesServiceImpl() {
     }
 
     @Override
