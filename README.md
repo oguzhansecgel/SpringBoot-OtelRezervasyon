@@ -3,7 +3,7 @@ Bu proje, otel rezervasyonlarını yönetmek için geliştirilmiş bir Spring Bo
 
 ## Gereksinimler
 
-- Java 17+
+- Java 17++
 - Maven 3.8+
 - Git
 - PostgreSQL
